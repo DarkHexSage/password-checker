@@ -168,6 +168,13 @@ This tool implements NIST SP 800-63B-3 Guidelines:
 - No regular expiration requirements
 - Encourages longer, memorable passwords
 
+## Screenshots
+
+<img width="893" height="934" alt="image" src="https://github.com/user-attachments/assets/cb3cb8bb-804a-4978-9211-17166821e751" />
+<img width="853" height="939" alt="image" src="https://github.com/user-attachments/assets/d98751c0-aaf5-4688-ac5b-f2e5909009f0" />
+<img width="715" height="936" alt="image" src="https://github.com/user-attachments/assets/7c74421c-7cc0-4f2f-ae94-07de5df8089d" />
+
+
 ---
 
 **Built for:** Full-stack security engineering portfolio
