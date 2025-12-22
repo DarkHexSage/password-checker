@@ -170,9 +170,9 @@ This tool implements NIST SP 800-63B-3 Guidelines:
 
 ## Screenshots
 
-<img width="893" height="934" alt="image" src="https://github.com/user-attachments/assets/cb3cb8bb-804a-4978-9211-17166821e751" />
-<img width="853" height="939" alt="image" src="https://github.com/user-attachments/assets/d98751c0-aaf5-4688-ac5b-f2e5909009f0" />
-<img width="715" height="936" alt="image" src="https://github.com/user-attachments/assets/7c74421c-7cc0-4f2f-ae94-07de5df8089d" />
+<img width="860" height="560" alt="image" src="https://github.com/user-attachments/assets/d8a550eb-89e2-4d81-b18b-a28298ee8c24" />
+<img width="850" height="556" alt="image" src="https://github.com/user-attachments/assets/7c073174-0a41-42d4-8216-cdf10f5e18db" />
+<img width="861" height="935" alt="image" src="https://github.com/user-attachments/assets/22680355-555b-4dbb-bc20-4a449b499d33" />
 
 
 ---
