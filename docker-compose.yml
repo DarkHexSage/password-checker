@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - PUBLIC_URL=/password-checker
     container_name: password-checker-backend
     ports:
       - "32777:5001"
