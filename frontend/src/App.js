@@ -7,7 +7,7 @@ function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const API_BASE = process.env.REACT_APP_API_URL || 'http://adragportfolio.info.gf:32777';
+  const API_BASE = process.env.REACT_APP_API_URL || '/password-checker/api';
 
   // Real-time validation as user types
   useEffect(() => {
