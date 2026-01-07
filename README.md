@@ -772,6 +772,9 @@ Learn more about password security:
 
 [password-checker.webm](https://github.com/user-attachments/assets/5aa1c562-c37b-4106-ae4e-87a97a43e59c)
 
+[DEMO](https://adragportfolio.info.gf/password-checker)
+
+
 ---
 
 <div align="center">
