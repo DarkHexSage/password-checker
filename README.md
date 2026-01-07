@@ -706,16 +706,6 @@ This validator implements the **recommended** NIST approach:
 
 ---
 
-## 🖼️ Screenshots
-
-The application includes a beautiful React UI:
-
-- **Password Input Field** - Real-time validation feedback
-- **Strength Indicator** - Visual bar showing compliance level
-- **Score Breakdown** - Detailed analysis of each check
-- **Recommendations** - Actionable improvement suggestions
-- **Mobile Responsive** - Works on all devices
-
 ---
 
 ## ❓ FAQ
