@@ -778,9 +778,7 @@ Learn more about password security:
 ---
 
 <div align="center">
-
-### Made with ❤️ for Security Engineers
-
+       
 **Built for:** Full-stack security engineering portfolio  
 **Last Updated:** January 2025  
 **Version:** 2.0.0
