@@ -16,7 +16,7 @@
 
 <br>
 
-**[Quick Start](#-quick-start)** • **[Features](#-features)** • **[API Reference](#-api-endpoints)** • **[Validation Details](#-validation-details)** • **[NIST Guidelines](#-nist-compliance)** • **[Testing](#-test-passwords)** **• **[Demo](#Demo)****
+**[Quick Start](#-quick-start)** • **[Features](#-features)** • **[API Reference](#-api-endpoints)** • **[Validation Details](#-validation-details)** • **[NIST Guidelines](#-nist-compliance)** • **[Testing](#-test-passwords)** **• **[Demo](#-demo)****
 
 </div>
 
