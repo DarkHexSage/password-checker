@@ -1,22 +1,22 @@
-# 🔐 API Security Testing Suite
+# 🔑 NIST Password Security Checker
 
 <div align="center">
 
-> **Educational platform for mastering API security** — Compare secure vs insecure implementations across **10 OWASP Top vulnerabilities**
+> **Full-stack password validation tool** — Implement NIST SP 800-63B-3 guidelines to build stronger authentication systems
 
-[![Python](https://img.shields.io/badge/Python-3.9%2B-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.0%2B-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![React](https://img.shields.io/badge/React-18%2B-61dafb?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ed?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![OWASP](https://img.shields.io/badge/OWASP-Top%2010-ff6b00?style=for-the-badge&logo=owasp&logoColor=white)](https://owasp.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![NIST](https://img.shields.io/badge/NIST-SP%20800--63B--3-003366?style=for-the-badge&logo=security&logoColor=white)](https://pages.nist.gov/800-63-3/sp800-63b.html)
 [![License](https://img.shields.io/badge/License-Educational-green?style=for-the-badge)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)](#)
 
 <br>
 
-**[Quick Start](#-quick-start)** • **[Features](#features)** • **[Endpoints](#-endpoints-overview)** • **[Testing Guide](#-real-world-testing-examples)** • **[Learn More](#-key-learnings)**
+**[Quick Start](#-quick-start)** • **[Features](#-features)** • **[API Reference](#-api-endpoints)** • **[Validation Details](#-validation-details)** • **[NIST Guidelines](#-nist-compliance)** • **[Testing](#-test-passwords)**
 
 </div>
 
@@ -24,379 +24,411 @@
 
 ## ✨ Features
 
-| Feature | Details |
-|---------|---------|
-| 🔄 **Dual API Mode** | Compare secure & insecure implementations side-by-side |
-| 🛣️ **17 Endpoints** | Full CRUD operations with real production vulnerabilities |
-| 🎯 **Real Vulnerabilities** | All 10 OWASP Top flaws demonstrated with live examples |
-| 📊 **Interactive Dashboard** | Test both APIs simultaneously with live feedback |
-| 🎨 **Glass UI** | Professional modern interface with real-time validation |
+| Feature | Description |
+|---------|-------------|
+| ⚡ **Real-time Validation** | Instant feedback as you type passwords |
+| 📋 **NIST SP 800-63B-3 Compliance** | Implements modern NIST guidelines |
+| 🔤 **Character Analysis** | Detects uppercase, lowercase, numbers, symbols |
+| 🎯 **Pattern Detection** | Identifies keyboard sequences, common passwords |
+| 🔢 **Sequential Detection** | Finds abc, 123, and similar patterns |
+| 📊 **Entropy Calculation** | Measures information strength in bits |
+| 💡 **Smart Recommendations** | Detailed improvement suggestions |
+| 🎨 **Beautiful React UI** | Modern glass design with live feedback |
 | 🐳 **Docker Ready** | One-command setup with docker-compose |
-| 📚 **Educational** | Learn by exploiting vs defending the same endpoints |
+| 🔒 **No Storage** | Passwords are never stored or logged |
 
 ---
 
 ## 🚀 Quick Start
 
 ### Option 1: Docker Compose (Recommended) ⭐
+
 ```bash
-docker-compose up -d
+# Build and run both services
+docker-compose up --build
+
+# Open your browser to http://localhost:3001
 ```
 
-Access the suite:
-- **Dashboard:** http://localhost:5000
-- **Secure API:** http://localhost:8001
-- **Insecure API:** http://localhost:8000
+**What happens:**
+```
+✅ Backend validates on http://localhost:5001
+✅ Frontend runs on http://localhost:3001
+✅ Live WebSocket for instant feedback
+✅ CORS enabled for secure communication
+```
 
 ### Option 2: Local Development
 
 **Backend Setup:**
 ```bash
 pip install -r requirements.txt
-python app.py  # Runs on http://localhost:8001 & 8000
+python app.py
+# Runs on http://localhost:5001
 ```
 
 **Frontend Setup:**
 ```bash
 cd frontend
 npm install
-npm start  # Runs on http://localhost:5000
+npm start
+# Runs on http://localhost:3001
 ```
 
 ---
 
-## 🔐 Security Comparison Matrix
+## 📚 NIST SP 800-63B Guidelines
 
-### Secure API (Port 8001) ✅
+This tool validates against the **modern NIST SP 800-63B-3** password guidelines:
 
-```
-Authentication      │ JWT + bcrypt (24h expiration)
-Authorization       │ Role-based access control
-Input Validation    │ Strict (email, password strength)
-SQL Injection       │ Parameterized queries
-Rate Limiting       │ 5 attempts/minute
-IDOR Protection     │ Ownership verification
-API Keys           │ Bearer token in headers
-Mass Assignment     │ Field whitelisting
-CORS               │ Restricted origins
-Security Headers   │ CSP, X-Frame, HSTS, etc
-```
+| Guideline | Details |
+|-----------|---------|
+| 🔢 **Minimum Length** | 8 characters |
+| 📏 **Recommended Length** | 12+ characters |
+| 🎯 **Preferred Length** | 16+ characters for critical systems |
+| 🔤 **Character Variety** | Mix of character types recommended |
+| 🚫 **Blacklist Checking** | Common passwords avoided |
+| 📈 **Entropy Focus** | Information strength emphasized |
+| ⏰ **No Expiration** | Modern approach without forced changes |
+| 🤝 **User-Friendly** | Encourages longer, memorable passwords |
 
-### Insecure API (Port 8000) ❌
-
-```
-Authentication      │ ❌ Weak JWT (hardcoded secret)
-Authorization       │ ❌ NONE
-Input Validation    │ ❌ NONE
-SQL Injection       │ ❌ String concatenation
-Rate Limiting       │ ❌ NONE
-IDOR Protection     │ ❌ NONE
-API Keys           │ ❌ URL parameters
-Mass Assignment     │ ❌ All fields accepted
-CORS               │ ❌ Allows all origins (*)
-Security Headers   │ ❌ NONE
-```
+> **Key Insight:** NIST moved away from complexity rules (uppercase, numbers, symbols) toward length + entropy. Longer passwords are better than forced complexity!
 
 ---
 
-## 💡 Real-World Testing Examples
+## 🔐 Validation Breakdown
 
-### Test 1: Weak Password Validation
+### Length Check ✅
+
 <details>
-<summary><strong>Expand to see responses</strong></summary>
+<summary><strong>How length is scored</strong></summary>
 
-**Secure API ✅**
-```bash
-curl -X POST http://localhost:8001/api/v1/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","password":"123"}'
 ```
-Response: **400 Bad Request**
-```json
-{"error": "Password must be at least 8 characters with mixed case"}
+8 characters    → Minimum requirement met
+12+ characters  → Preferred (Good)
+16+ characters  → Excellent (Very Strong)
+20+ characters  → Maximum security benefit
+128+ characters → Maximum allowed
 ```
 
-**Insecure API ❌**
-```bash
-curl -X POST http://localhost:8000/api/v1/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","password":"123"}'
-```
-Response: **201 Created** (Password exposed in response!)
-```json
-{"id": 1, "email": "test@example.com", "password": "123"}
-```
+**Examples:**
+- `Pass123!` (8 chars) → ✅ Minimum
+- `MyP@ssw0rd2024!` (15 chars) → ✅✅ Preferred
+- `CorrectHorseBatteryStaple!` (26 chars) → ✅✅✅ Excellent
+
 </details>
 
-### Test 2: Unauthenticated User Enumeration
+### Character Variety 🔤
+
 <details>
-<summary><strong>Expand to see responses</strong></summary>
-
-**Secure API ✅**
-```bash
-curl http://localhost:8001/api/v1/users
-```
-Response: **401 Unauthorized**
-```json
-{"error": "Authentication required"}
-```
-
-**Insecure API ❌**
-```bash
-curl http://localhost:8000/api/v1/users
-```
-Response: **200 OK** - ALL USERS EXPOSED!
-```json
-[
-  {"id": 1, "email": "admin@example.com", "password": "admin123"},
-  {"id": 2, "email": "user@example.com", "password": "password123"}
-]
-```
-</details>
-
-### Test 3: User Impersonation (Create Orders)
-<details>
-<summary><strong>Expand to see responses</strong></summary>
-
-**Secure API ✅**
-```bash
-curl -X POST http://localhost:8001/api/v1/orders \
-  -H "Authorization: Bearer <valid_token>" \
-  -H "Content-Type: application/json" \
-  -d '{"total":99.99,"items":["item1","item2"]}'
-```
-Response: **201 Created** (Order created for authenticated user only)
-
-**Insecure API ❌**
-```bash
-curl -X POST http://localhost:8000/api/v1/orders \
-  -H "Content-Type: application/json" \
-  -d '{"user_id":999,"total":1000000,"items":["free_item"]}'
-```
-Response: **201 Created** (Order created as ANY user!)
-```json
-{"id": 100, "user_id": 999, "total": 1000000, "created_by": "attacker"}
-```
-</details>
-
-### Test 4: SQL Injection
-<details>
-<summary><strong>Expand to see responses</strong></summary>
-
-**Secure API ✅**
-```bash
-curl http://localhost:8001/api/v1/users/1%20OR%201=1
-```
-Response: **404 Not Found** (Safe parameterized query)
-
-**Insecure API ❌**
-```bash
-curl http://localhost:8000/api/v1/users/1%20OR%201=1
-```
-Response: **200 OK** (Vulnerable!)
-```json
-[
-  {"id": 1, "email": "admin@example.com"},
-  {"id": 2, "email": "user@example.com"}
-]
-```
-Raw Query: `SELECT * FROM users WHERE id = 1 OR 1=1`
-</details>
-
-### Test 5: IDOR (Insecure Direct Object Reference)
-<details>
-<summary><strong>Expand to see responses</strong></summary>
-
-**Secure API ✅**
-```bash
-curl -H "Authorization: Bearer <user2_token>" \
-     http://localhost:8001/api/v1/orders/1
-```
-Response: **403 Forbidden** (Ownership check enforced)
-
-**Insecure API ❌**
-```bash
-curl http://localhost:8000/api/v1/orders/1
-curl http://localhost:8000/api/v1/orders/2
-curl http://localhost:8000/api/v1/orders/999
-```
-Response: **200 OK** (Returns anyone's order!)
-```json
-{"id": 1, "user_id": 2, "total": 500.00, "items": [...]}
-```
-</details>
-
-### Test 6: Mass Assignment / Privilege Escalation
-<details>
-<summary><strong>Expand to see responses</strong></summary>
-
-**Secure API ✅**
-```bash
-curl -X POST http://localhost:8001/api/v1/user/update \
-  -H "Authorization: Bearer <token>" \
-  -H "Content-Type: application/json" \
-  -d '{"name":"John","role":"admin"}'
-```
-Response: **200 OK** (Field ignored, role stays "user")
-```json
-{"name": "John", "role": "user"}
-```
-
-**Insecure API ❌**
-```bash
-curl -X POST http://localhost:8000/api/v1/user/update \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Hacker","role":"admin","email":"new@example.com"}'
-```
-Response: **200 OK** (User is now admin!)
-```json
-{"name": "Hacker", "role": "admin", "email": "new@example.com"}
-```
-</details>
-
-### Test 7: Brute Force / No Rate Limiting
-<details>
-<summary><strong>Expand to see responses</strong></summary>
-
-**Secure API ✅**
-```bash
-# Requests 1-5: 200 OK
-# Request 6+: 429 Too Many Requests (Rate limited)
-```
-
-**Insecure API ❌**
-```bash
-for i in {1..100}; do
-  curl -X POST http://localhost:8000/api/v1/auth/login \
-    -d '{"email":"admin@example.com","password":"attempt'$i'"}'
-done
-# All 100 requests succeed instantly - NO RATE LIMITING!
-```
-</details>
-
----
-
-## 🛣️ Endpoints Overview
-
-### Secure API (8001) - 17 Protected Endpoints
+<summary><strong>Supported character types</strong></summary>
 
 ```yaml
-Authentication:
-  POST   /api/v1/auth/register       ✅ Input validation + password hashing
-  POST   /api/v1/auth/login          ✅ Secure JWT with expiration
-  POST   /api/v1/auth/verify         ✅ Token validation
-
-User Management:
-  GET    /api/v1/users               ✅ Authentication required
-  GET    /api/v1/users/:id           ✅ Parameterized queries
-  GET    /api/v1/admin/users         ✅ Admin role enforcement
-  POST   /api/v1/user/update         ✅ Field whitelisting
-
-Data Access:
-  GET    /api/v1/products            ✅ Auth required
-  GET    /api/v1/data                ✅ Own data only (IDOR proof)
-  GET    /api/v1/data/sensitive      ✅ Bearer token auth
-  GET|POST /api/v1/profile           ✅ CORS protected
-
-Order Management:
-  GET|POST /api/v1/orders            ✅ Ownership verification
-  GET    /api/v1/orders/:id          ✅ IDOR prevention
-
-Utilities:
-  POST   /api/v1/cache/load          ✅ JSON only (no pickle)
-  GET    /health                     ✅ Security headers
-  GET    /api/v1/info                ✅ Safe information
+Uppercase Letters: A-Z           (26 options)
+Lowercase Letters: a-z           (26 options)
+Numbers:          0-9            (10 options)
+Special Chars:    !@#$%^&*()...  (32+ options)
 ```
 
-### Insecure API (8000) - 17 Vulnerable Endpoints
+**Scoring:**
+- 1 character type → Weak variety
+- 2 character types → Moderate variety
+- 3 character types → Good variety
+- 4 character types → Excellent variety
 
-```yaml
-Authentication:
-  POST   /api/v1/auth/register       ❌ No validation
-  POST   /api/v1/auth/login          ❌ Weak JWT secret
-  POST   /api/v1/auth/verify         ❌ Hardcoded secret
+**Examples:**
+- `password` → Single type (lowercase only)
+- `password123` → Two types (lowercase + numbers)
+- `Password123` → Three types (upper + lower + numbers)
+- `Password123!` → Four types (all supported)
 
-User Management:
-  GET    /api/v1/users               ❌ NO AUTH - Full enumeration
-  GET    /api/v1/users/:id           ❌ SQL injection vulnerable
-  GET    /api/v1/admin/users         ❌ NO AUTH - Anyone is admin
-  POST   /api/v1/user/update         ❌ Mass assignment
+</details>
 
-Data Access:
-  GET    /api/v1/products            ❌ No authentication
-  GET    /api/v1/data                ❌ IDOR - Access anyone's data
-  GET    /api/v1/data/sensitive      ❌ API key in URL parameter
-  GET|POST /api/v1/profile           ❌ CORS allow all origins
+### Pattern Detection 🎯
 
-Order Management:
-  GET|POST /api/v1/orders            ❌ Can impersonate any user
-  GET    /api/v1/orders/:id          ❌ IDOR - Full access
+<details>
+<summary><strong>Patterns that are detected and penalized</strong></summary>
 
-Utilities:
-  POST   /api/v1/cache/load          ❌ Pickle RCE vulnerability
-  POST   /api/v1/brute/login         ❌ No rate limiting
-  GET    /api/v1/info                ❌ No security headers
+**Keyboard Sequences (Detected & Scored):**
+```
+qwerty, asdf, zxcv, qweasd, 123456, 789456, etc
+```
+
+**Common Passwords (Dictionary Check):**
+```
+password, admin, letmein, welcome, monkey, dragon, 
+password123, admin123, qwerty123, etc
+```
+
+**Date-Like Patterns:**
+```
+2024, 1995, 01/01, 12/25, etc
+```
+
+**Repeated Characters:**
+```
+aaa, 111, !!!, aaabbb, etc
+```
+
+**Sequential Patterns:**
+```
+abc, xyz, 123, 456, abcd, 1234, etc
+```
+
+**Penalty:** Each detected pattern reduces score by 10-15 points
+
+</details>
+
+### Entropy Calculation 📊
+
+<details>
+<summary><strong>How entropy is measured</strong></summary>
+
+**Formula:**
+```
+Entropy = log₂(C^L)
+Where: C = character set size
+       L = password length
+```
+
+**Example Calculations:**
+```
+"pass" (lowercase only)
+  → C=26, L=4 → Entropy = 18.9 bits
+
+"P@ssw0rd!" (all types)
+  → C=94, L=9 → Entropy = 59.5 bits
+
+"MySecurePassword123!" (all types)
+  → C=94, L=20 → Entropy = 131.7 bits
+```
+
+**Interpretation:**
+- 0-28 bits → Very Weak
+- 28-60 bits → Weak
+- 60-80 bits → Moderate
+- 80-120 bits → Strong
+- 120+ bits → Very Strong
+
+</details>
+
+---
+
+## 📊 Compliance Score System
+
+Your password receives a **compliance score from 0-100** based on multiple factors:
+
+| Score Range | Rating | Assessment |
+|------------|--------|------------|
+| **90-100** | ✅ VERY STRONG | Excellent security • NIST exceeds all requirements |
+| **70-89** | ✅ STRONG | Good security • NIST fully compliant |
+| **50-69** | ⚠️ MODERATE | Acceptable • Could be improved |
+| **30-49** | ❌ WEAK | Not recommended • Improve required |
+| **0-29** | ❌ VERY WEAK | Do not use • Major flaws detected |
+
+**Score Factors (Weighted):**
+- Length match: 30 points
+- Character variety: 25 points
+- Entropy: 25 points
+- Pattern detection: 20 points
+
+---
+
+## 🧪 Test Passwords
+
+Try these example passwords to see different validation results:
+
+<details>
+<summary><strong>Expand to see test cases</strong></summary>
+
+**VERY STRONG (90-100) ✅**
+```
+MySecureP@ss123!       → 15 chars, all types, no patterns
+CorrectHorseBattery    → 22 chars, excellent entropy
+P@ssw0rd_2024_Secure   → 20 chars, special chars, strong
+```
+
+**STRONG (70-89) ✅**
+```
+MyPassword123          → 12 chars, decent variety
+SecurePass2024         → 14 chars, mixed case + numbers
+Welcome@Home123        → 13 chars, good pattern mix
+```
+
+**MODERATE (50-69) ⚠️**
+```
+Password1234           → 12 chars, but simple pattern
+Admin12345             → 10 chars, missing symbols
+Qwerty!@#              → Mixed chars but weak length
+```
+
+**WEAK (30-49) ❌**
+```
+password123            → Dictionary word detected
+qwerty123              → Keyboard sequence detected
+Abc12345               → Too simple structure
+```
+
+**VERY WEAK (0-29) ❌**
+```
+password               → Common password
+admin                  → Too short + common
+123456                 → Only numbers
+```
+
+</details>
+
+---
+
+## 🔌 API Endpoints
+
+### Check Password Endpoint
+
+```http
+POST /api/check-password
+Content-Type: application/json
+```
+
+**Request:**
+```json
+{
+  "password": "MyP@ssw0rd2024!"
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "password_length": 15,
+  "is_compliant": true,
+  "compliance_score": 92,
+  "strength": "VERY STRONG",
+  "entropy": {
+    "entropy_bits": 98.7,
+    "entropy_strength": "STRONG",
+    "character_set_size": 94
+  },
+  "checks": {
+    "length": {
+      "passed": true,
+      "minimum": 8,
+      "current": 15,
+      "recommended": 12,
+      "score_contribution": 30
+    },
+    "character_variety": {
+      "has_uppercase": true,
+      "has_lowercase": true,
+      "has_numbers": true,
+      "has_symbols": true,
+      "variety_score": "excellent",
+      "score_contribution": 25
+    },
+    "common_patterns": {
+      "is_common": false,
+      "found_patterns": [],
+      "score_contribution": 0
+    },
+    "sequential": {
+      "has_sequential": false,
+      "found_sequences": [],
+      "score_contribution": 0
+    },
+    "repeated_chars": {
+      "has_repeated": false,
+      "repetitions": [],
+      "score_contribution": 0
+    }
+  },
+  "recommendations": [
+    "Password strength is excellent!",
+    "Consider using 16+ characters for critical accounts"
+  ],
+  "nist_compliant": true,
+  "timestamp": "2024-01-15T10:30:00Z"
+}
+```
+
+**Error Response (400 Bad Request):**
+```json
+{
+  "error": "Password validation failed",
+  "details": {
+    "length_issue": "Password must be at least 8 characters",
+    "variety_issue": "Add uppercase letters and symbols"
+  }
+}
+```
+
+### Endpoint Features
+
+| Feature | Details |
+|---------|---------|
+| 📍 **URL** | `/api/check-password` |
+| 🔧 **Method** | POST |
+| 📤 **Request Type** | JSON |
+| 📥 **Response Type** | JSON |
+| ⏱️ **Response Time** | < 100ms |
+| 🔒 **Security** | No password storage, CORS protected |
+| 📊 **Caching** | Response data only, never passwords |
+
+---
+
+## 🏗️ Project Architecture
+
+```
+nist-password-checker/
+│
+├── Backend (Flask)
+│   ├── app.py                          # Main Flask application
+│   ├── requirements.txt                # Python dependencies
+│   ├── Dockerfile                      # Backend container image
+│   │
+│   └── validators/
+│       ├── length_validator.py         # Length checking
+│       ├── entropy_calculator.py       # Entropy computation
+│       ├── pattern_detector.py         # Pattern detection
+│       └── nist_compliance.py          # NIST rules engine
+│
+├── Frontend (React)
+│   ├── Dockerfile                      # Frontend container image
+│   │
+│   ├── public/
+│   │   └── index.html                  # HTML entry point
+│   │
+│   └── src/
+│       ├── App.js                      # Main React component
+│       ├── App.css                     # Styling & animations
+│       ├── components/
+│       │   ├── PasswordInput.js        # Input field
+│       │   ├── StrengthBar.js          # Visual strength bar
+│       │   ├── ScoreBreakdown.js       # Score details
+│       │   └── Recommendations.js      # Improvement suggestions
+│       ├── utils/
+│       │   ├── api.js                  # API communication
+│       │   └── formatter.js            # Data formatting
+│       └── index.js                    # React DOM entry
+│
+├── docker-compose.yml                  # Service orchestration
+├── .env.example                        # Environment template
+└── README.md                           # Documentation
+
 ```
 
 ---
 
-## 🎯 Test Credentials
+## 🔒 Security Features
 
-```yaml
-Admin Account:
-  Email:    admin@example.com
-  Password: admin123
-
-Regular User:
-  Email:    user@example.com
-  Password: password123
-
-Test User:
-  Email:    test@example.com
-  Password: password123
-```
-
----
-
-## 📋 10 OWASP Top Vulnerabilities Demonstrated
-
-| # | Vulnerability | Secure Pattern | Insecure Pattern |
-|---|---|---|---|
-| 1️⃣ | **JWT Token Issues** | Strong secret, 24h expiration | Hardcoded secret, no expiration |
-| 2️⃣ | **SQL Injection** | Parameterized queries | String concatenation |
-| 3️⃣ | **Broken Authentication** | bcrypt + validation | Plain text passwords |
-| 4️⃣ | **API Key Issues** | Bearer headers | URL parameters |
-| 5️⃣ | **Missing Rate Limiting** | 5 req/min enforcement | Unlimited requests |
-| 6️⃣ | **IDOR** | Ownership verification | Direct object access |
-| 7️⃣ | **CORS Misconfiguration** | Restricted origins | Allow all (*) |
-| 8️⃣ | **Mass Assignment** | Field whitelisting | Accept any field |
-| 9️⃣ | **Insecure Deserialization** | JSON only | Pickle RCE |
-| 🔟 | **Missing Security Headers** | CSP, HSTS, X-Frame | No headers |
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    API Testing Suite                         │
-├─────────────────────────────────────────────────────────────┤
-│                                                               │
-│  ┌────────────────┐  ┌────────────────┐  ┌──────────────┐  │
-│  │  Dashboard     │  │  Secure API    │  │ Insecure API │  │
-│  │  (React)       │  │  Port 8001     │  │  Port 8000   │  │
-│  │  Port 5000     │  │  ✅ Hardened   │  │  ❌ Vulns    │  │
-│  └────────────────┘  └────────────────┘  └──────────────┘  │
-│          │                   │                   │            │
-│          └───────────────────┴───────────────────┘            │
-│                               │                               │
-│                      ┌────────────────┐                       │
-│                      │  PostgreSQL    │                       │
-│                      │  Data Storage  │                       │
-│                      └────────────────┘                       │
-│                                                               │
-└─────────────────────────────────────────────────────────────┘
-```
+| Feature | Implementation |
+|---------|---|
+| **Client-Side Validation** | Instant feedback without server calls |
+| **Server-Side Validation** | Secure processing on backend |
+| **No Password Storage** | Passwords never saved to disk |
+| **CORS Protection** | Only trusted origins allowed |
+| **Input Sanitization** | All inputs validated before processing |
+| **HTTPS Ready** | TLS/SSL configuration included |
+| **Rate Limiting** | Optional DoS protection |
+| **Environment Variables** | Sensitive config externalized |
 
 ---
 
@@ -405,158 +437,340 @@ Test User:
 | Tool | Version | Purpose |
 |------|---------|---------|
 | 🐳 Docker | Latest | Containerization |
-| 🐳 Docker Compose | Latest | Orchestration |
-| 🟢 Node.js | 18+ | Frontend build (local only) |
-| 🐍 Python | 3.9+ | Backend runtime (local only) |
-| 🗄️ PostgreSQL | 13+ | Database (included in compose) |
+| 🐳 Docker Compose | Latest | Service orchestration |
+| 🟢 Node.js | 18+ | Frontend build tool |
+| 🐍 Python | 3.11+ | Backend runtime |
+| 📦 npm | Latest | Package manager |
+| 🐍 pip | Latest | Python package manager |
 
 ---
 
 ## 📦 Installation & Usage
 
-### Start Services
+### Start with Docker Compose
 ```bash
-# Launch entire suite
+# Build and start all services
+docker-compose up --build
+
+# Or run in background
 docker-compose up -d
 
-# Follow logs in real-time
+# View logs
 docker-compose logs -f
-```
 
-### Access Points
-```
-Dashboard:     http://localhost:5000
-Secure API:    http://localhost:8001/api/v1
-Insecure API:  http://localhost:8000/api/v1
-Health Check:  http://localhost:8001/health
+# Specific service logs
+docker-compose logs -f flask-backend
+docker-compose logs -f react-frontend
 ```
 
 ### Stop Services
 ```bash
+# Stop all services
 docker-compose down
+
+# Remove volumes too (clean slate)
+docker-compose down -v
 ```
 
-### Complete Reset
+### Reset Everything
 ```bash
 docker-compose down -v
 docker-compose build --no-cache
 docker-compose up -d
 ```
 
-### View Logs
-```bash
-# All services
-docker-compose logs -f
+### Local Development
 
-# Specific service
-docker-compose logs -f secure-api
-docker-compose logs -f insecure-api
-docker-compose logs -f react-dashboard
+**Backend:**
+```bash
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Set environment
+export FLASK_ENV=development
+
+# Run server
+python app.py
+# Accessible at http://localhost:5001
+```
+
+**Frontend:**
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+# Accessible at http://localhost:3001
+
+# Build for production
+npm run build
 ```
 
 ---
 
-## 📚 Key Learnings
+## 🎯 Access Points
 
-By completing this hands-on suite, you'll master:
+| Service | URL | Purpose |
+|---------|-----|---------|
+| 🎨 **Dashboard** | http://localhost:3001 | Password validation UI |
+| 🔌 **Backend API** | http://localhost:5001/api | REST endpoints |
+| 📊 **Health Check** | http://localhost:5001/health | Backend status |
+| 📚 **API Docs** | http://localhost:5001/docs | Swagger documentation |
 
-✅ **Authentication & Authorization**
-- Implementing JWT with bcrypt hashing
-- Role-based access control (RBAC)
-- Secure session management
+---
 
-✅ **Input Validation**
-- Parameterized SQL queries
-- Input sanitization techniques
-- Password strength requirements
+## 💡 Real-World Examples
 
-✅ **API Security**
-- Bearer token authentication
-- Rate limiting & DDoS protection
-- CORS policy configuration
+### Example 1: Strong Password Validation
+<details>
+<summary><strong>See the request and response</strong></summary>
 
-✅ **Access Control**
-- IDOR vulnerability prevention
-- Ownership verification patterns
-- Field whitelisting
+**Request:**
+```bash
+curl -X POST http://localhost:5001/api/check-password \
+  -H "Content-Type: application/json" \
+  -d '{"password":"MySecureP@ss2024!"}'
+```
 
-✅ **Secure Coding**
-- Password hashing best practices
-- Security headers implementation
-- Insecure deserialization risks
+**Response:**
+```json
+{
+  "password_length": 17,
+  "compliance_score": 95,
+  "strength": "VERY STRONG",
+  "nist_compliant": true,
+  "entropy": {
+    "entropy_bits": 112.3,
+    "entropy_strength": "VERY STRONG"
+  },
+  "recommendations": [
+    "Excellent password strength!",
+    "This password meets all NIST guidelines"
+  ]
+}
+```
+</details>
 
-✅ **All 10 OWASP Top API Vulnerabilities**
-- Live examples of each vulnerability
-- Secure implementation patterns
-- Real-world exploit demonstrations
+### Example 2: Weak Password Detection
+<details>
+<summary><strong>See the request and response</strong></summary>
+
+**Request:**
+```bash
+curl -X POST http://localhost:5001/api/check-password \
+  -H "Content-Type: application/json" \
+  -d '{"password":"password123"}'
+```
+
+**Response:**
+```json
+{
+  "password_length": 11,
+  "compliance_score": 28,
+  "strength": "VERY WEAK",
+  "nist_compliant": false,
+  "checks": {
+    "common_patterns": {
+      "is_common": true,
+      "found_patterns": ["password (common word)", "123 (sequential)"]
+    }
+  },
+  "recommendations": [
+    "Use a unique password not found in dictionaries",
+    "Avoid sequential numbers like 123",
+    "Add special characters (!@#$%)",
+    "Increase length to at least 12 characters"
+  ]
+}
+```
+</details>
+
+### Example 3: Pattern Detection
+<details>
+<summary><strong>See the request and response</strong></summary>
+
+**Request:**
+```bash
+curl -X POST http://localhost:5001/api/check-password \
+  -H "Content-Type: application/json" \
+  -d '{"password":"qwerty123"}'
+```
+
+**Response:**
+```json
+{
+  "password_length": 9,
+  "compliance_score": 22,
+  "strength": "VERY WEAK",
+  "nist_compliant": false,
+  "checks": {
+    "common_patterns": {
+      "found_patterns": [
+        "qwerty (keyboard sequence)",
+        "123 (sequential numbers)"
+      ]
+    }
+  },
+  "recommendations": [
+    "Avoid keyboard sequences (qwerty, asdf, etc)",
+    "Don't use number sequences (123, 456, etc)",
+    "Choose a completely random passphrase",
+    "Consider using a passphrase: 3-4 random words"
+  ]
+}
+```
+</details>
+
+---
+
+## 📈 Score Calculation Example
+
+Let's break down how `MyP@ssw0rd2024!` gets scored:
+
+```yaml
+Password: MyP@ssw0rd2024!
+Length: 15 characters
+
+Score Breakdown:
+├── Length Check (30 points)
+│   └── 15 chars > 12 (preferred) → ✅ +30 points
+│
+├── Character Variety (25 points)
+│   ├── Uppercase: M, P, p → ✅
+│   ├── Lowercase: y, s, w, r, d → ✅
+│   ├── Numbers: 0, 2, 4 → ✅
+│   └── Symbols: @, ! → ✅
+│   └── All 4 types present → ✅ +25 points
+│
+├── Entropy (25 points)
+│   ├── Character set: 94
+│   ├── Entropy: log₂(94^15) = 98.7 bits
+│   └── Excellent entropy → ✅ +25 points
+│
+├── Pattern Detection (20 points)
+│   ├── Common passwords: ✅ Not found
+│   ├── Keyboard sequences: ✅ Not found
+│   ├── Sequential chars: ✅ Not found
+│   └── No patterns → ✅ +20 points
+│
+└── TOTAL SCORE: 100 points → Rating: VERY STRONG ✅
+```
+
+---
+
+## 📚 NIST Compliance Details
+
+### What NIST Says
+
+The **NIST SP 800-63B-3** document emphasizes:
+
+✅ **DO THIS:**
+```
+• Enforce minimum 8-character length
+• Support longer passwords (20+ characters)
+• Allow all printable ASCII characters including spaces
+• Check against known compromised passwords
+• Focus on entropy and unpredictability
+• Use salted hashing (bcrypt, scrypt, PBKDF2)
+```
+
+❌ **DON'T DO THIS:**
+```
+• Force password composition rules
+• Require special character rotation
+• Expire passwords regularly
+• Use hints or security questions
+• Implement account lockouts
+• Transmit passwords insecurely
+```
+
+### Implementation in This Tool
+
+This validator implements the **recommended** NIST approach:
+
+| NIST Guideline | How We Implement It |
+|---|---|
+| Minimum 8 characters | Enforce length >= 8 |
+| Encourage length | Recommend 12+ | Prefer 16+ |
+| Entropy focus | Calculate Shannon entropy |
+| Dictionary checking | Common password blacklist |
+| No forced complexity | Accept any characters |
+| User-friendly | Provide helpful feedback |
+
+---
+
+## 🖼️ Screenshots
+
+The application includes a beautiful React UI:
+
+- **Password Input Field** - Real-time validation feedback
+- **Strength Indicator** - Visual bar showing compliance level
+- **Score Breakdown** - Detailed analysis of each check
+- **Recommendations** - Actionable improvement suggestions
+- **Mobile Responsive** - Works on all devices
 
 ---
 
 ## ❓ FAQ
 
-**Q: Is the Secure API production-ready?**  
-A: The security patterns follow OWASP best practices and can be adapted for production use. Always conduct thorough security testing before deployment.
+**Q: Are my passwords stored?**  
+A: No. Passwords are never stored, logged, or transmitted to external services. Validation happens in-memory and results are discarded.
 
-**Q: Why compare vulnerable code side-by-side?**  
-A: Side-by-side comparison is one of the most effective learning methods. Seeing the attack vs. defense together reinforces security principles.
+**Q: Does this work offline?**  
+A: The container runs locally, so yes. No internet connection required after Docker image is built.
 
-**Q: How long does setup take?**  
-A: Under 1 minute with Docker Compose. Run `docker-compose up -d` and you're ready to test.
+**Q: Can I modify the validation rules?**  
+A: Absolutely! Both the backend and frontend are fully customizable. Modify `validators/nist_compliance.py` for different rules.
 
-**Q: Can I modify the code?**  
-A: Absolutely! Both APIs are educational tools. Modify, experiment, and learn by breaking things.
+**Q: Why use entropy instead of complexity?**  
+A: NIST moved away from forcing special characters because a long password (e.g., "correct horse battery staple") is often more secure than a forced-complex short one.
 
-**Q: What if I want to test locally?**  
-A: Use Option 2 (Local Development). Install requirements and run `python app.py` for the backend.
+**Q: Is this production-ready?**  
+A: The validation logic is solid and follows NIST guidelines. For production, add HTTPS, rate limiting, and logging.
 
-**Q: Are there any prerequisites?**  
-A: Just Docker & Docker Compose. Everything else is included in the containers.
+**Q: How do I test it?**  
+A: Use the test passwords in the examples section, or the interactive UI at http://localhost:3001
 
----
-
-## ⚠️ Important Disclaimer
-
-### The Insecure API is intentionally vulnerable for educational purposes only
-
-```
-🚫 DO NOT use insecure patterns in production
-🚫 DO NOT expose this suite to the internet
-🚫 DO NOT deploy vulnerable code to any public environment
-✅ DO use in controlled learning/lab environments
-✅ DO follow Secure API patterns for real applications
-✅ DO conduct security audits before production deployment
-```
+**Q: Can I integrate this into my app?**  
+A: Yes! The Flask backend provides a clean JSON API that any frontend can consume.
 
 ---
 
-## 🎓 Educational Resources
+## 🔐 NIST Guidelines Resources
 
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [OWASP API Security](https://owasp.org/www-project-api-security/)
-- [Flask Security Best Practices](https://flask.palletsprojects.com/en/2.3.x/security/)
-- [JWT Authentication](https://jwt.io/)
-- [CORS Explained](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+Learn more about password security:
+
+- 📖 [NIST SP 800-63B-3 Full Document](https://pages.nist.gov/800-63-3/sp800-63b.html)
+- 🔐 [OWASP Password Storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
+- 🎯 [Entropy in Passwords](https://en.wikipedia.org/wiki/Password_strength#Entropy_as_a_measure_of_password_strength)
+- 🛡️ [Troy Hunt: Passwords Evolved](https://www.troyhunt.com/password-myths-and-misconceptions/)
 
 ---
 
-## 📈 Project Stats
+## 📊 Project Stats
 
 | Metric | Value |
 |--------|-------|
-| 🔐 OWASP Vulnerabilities | 10 |
-| 🛣️ Total Endpoints | 34 (17 × 2) |
-| 📊 Test Cases | 30+ |
-| 🐳 Docker Services | 4 |
-| 📚 Documentation | Comprehensive |
-| ⏱️ Setup Time | < 1 minute |
+| 🔤 Character Types Supported | 4 (uppercase, lowercase, numbers, symbols) |
+| 📏 Length Range | 8-128 characters |
+| 🎯 Pattern Rules | 15+ common patterns detected |
+| 📊 Validation Checks | 6 comprehensive checks |
+| ⚡ Response Time | < 100ms average |
+| 🐳 Docker Services | 2 (backend + frontend) |
+| 📚 Test Cases | 20+ examples |
 
 ---
 
 ## 🤝 Demo
 
-[password-checker.webm](https://github.com/user-attachments/assets/797a35c6-6a57-4413-a03c-e6349bc247d0)
-
-[Password Checker](https://adragportfolio.info.gf/password-checker)
+[password-checker.webm](https://github.com/user-attachments/assets/5aa1c562-c37b-4106-ae4e-87a97a43e59c)
 
 ---
 
@@ -571,8 +785,8 @@ A: Just Docker & Docker Compose. Everything else is included in the containers.
 <br>
 
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github)](https://github.com/)
-[![Security](https://img.shields.io/badge/Security-First-red?style=for-the-badge&logo=security)](https://owasp.org/)
-[![Learning](https://img.shields.io/badge/Learning-Focused-blue?style=for-the-badge&logo=brain)](https://www.owasp.org/)
+[![Security](https://img.shields.io/badge/Security-First-red?style=for-the-badge&logo=security)](https://pages.nist.gov/800-63-3/)
+[![Learning](https://img.shields.io/badge/Learning-Focused-blue?style=for-the-badge&logo=brain)](https://www.nist.gov/)
 
 </div>
 
@@ -581,6 +795,6 @@ A: Just Docker & Docker Compose. Everything else is included in the containers.
 <details>
 <summary><strong>📄 License & Attribution</strong></summary>
 
-Educational project for learning API security. OWASP content used under creative commons license.
+Educational project for learning password security and NIST guidelines. NIST SP 800-63 content used under public domain. No passwords are stored, transmitted, or used beyond validation scope.
 
 </details>
